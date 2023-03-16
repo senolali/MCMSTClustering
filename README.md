@@ -18,3 +18,18 @@ The main contributions of our algorithm can be summed up as follows:
 
 ![Micro-Clusters](img/1_HalfKernel_.png) 
 ![Macro-Clusters](img/1_HalfKernel__ARI.png)
+
+![Micro-Clusters](img/2_Three_Spirals_.png) 
+![Macro-Clusters](img/2_Three_Spirals__ARI.png)
+
+![Micro-Clusters](img/3_Corners_.png) 
+![Macro-Clusters](img/3_Corners__ARI.png)
+
+![Micro-Clusters](img/4_Moon_.png) 
+![Macro-Clusters](img/4_Moon__ARI.png)
+
+If you use the code in your works, please cite the paper given below:
+
+<b>Cite this article</b>
+Şenol, A. MCMSTClustering: defining non-spherical clusters by using minimum spanning tree over KD-tree-based micro-clusters. Neural Comput & Applic (2023). https://doi.org/10.1007/s00521-023-08386-3
+
