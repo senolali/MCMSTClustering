@@ -16,5 +16,5 @@ The main contributions of our algorithm can be summed up as follows:
 • It is efficient on imbalanced datasets.
 
 
-![My Image](img/1_HalfKernel_.png) 
-![My Image](img/1_HalfKernel_ARI.png)
+![Micro-Clusters](img/1_HalfKernel_.png) 
+![Macro-Clusters](img/1_HalfKernel__ARI.png)
