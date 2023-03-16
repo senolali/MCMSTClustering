@@ -15,3 +15,5 @@ The main contributions of our algorithm can be summed up as follows:
 
 • It is efficient on imbalanced datasets.
 
+
+![My Image](img/1_HalfKernel_.png)
