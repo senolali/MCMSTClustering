@@ -5,7 +5,12 @@ In this study, we proposed a novel clustering algorithm named as MCMSTClustering
 
 The main contributions of our algorithm can be summed up as follows:
 • It clusters datasets with high-quality,
+
 • It can detect arbitrary-shaped clusters,
+
 • It can overcome outliers/noisy data,
-• It can handle clusters that have varying densities
-• It is efficient on imbalanced datasets
+
+• It can handle clusters that have varying densities,
+
+• It is efficient on imbalanced datasets.
+
