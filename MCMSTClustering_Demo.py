@@ -100,9 +100,10 @@ class MCMSTCluster:
         return spanning_edges
     
     def DefMacros(self):
+        edge_lists=[]
         for a in range(self.MCs.shape[0]):
             if(self.MCs[a,2]==0):
-                edge_lists=self.MST(self.MCs[a,0])#################################buraya bak
+                edge_lists=self.MST(self.MCs[a,0])
                 if(len(edge_lists)>0):
                     edge_list=np.empty((0,2),int)
                     for index in edge_lists:
@@ -115,17 +116,18 @@ class MCMSTCluster:
                     if(summ>=n_micro*N or len(np.unique(edge_list))>=n_micro):
                         self.MacroC_Num=self.MacroC_Num+1
                         colors = np.array(sns.color_palette(None, self.MacroC_Num+1))
-                        self.MacroClusters=np.vstack((self.MacroClusters,np.array([self.MacroC_Num,len(np.unique(edge_list)),edge_list,colors[-1,:]])))
+                        self.MacroClusters=np.vstack((self.MacroClusters,  np.array([self.MacroC_Num,len(np.unique(edge_list)),edge_list,colors[-1,:]],dtype=object)   ))
                         print("--Macro Cluster #",self.MacroC_Num," is defined--")
                         for i in np.unique(edge_list):
                             self.MCs[self.MCs[:,0]==i,2]=self.MacroC_Num
-        for a in range(self.MCs.shape[0]):
-            if(self.MCs[a,2]==0 and self.MCs[a,1]>=self.N*self.n_micro):
-                    self.MacroC_Num=self.MacroC_Num+1
-                    colors = np.array(sns.color_palette(None, self.MacroC_Num+1))
-                    self.MacroClusters=np.vstack((self.MacroClusters,np.array([self.MacroC_Num,len(np.unique(edge_list)),edge_list,colors[-1,:]])))
-                    print("--Macro Cluster #",self.MacroC_Num," is defined--")
-                    self.MCs[a,2]=self.MacroC_Num
+        if len(edge_lists)>=self.N:
+            for a in range(self.MCs.shape[0]):
+                if(self.MCs[a,2]==0 and self.MCs[a,1]>=self.N*self.n_micro):
+                        self.MacroC_Num=self.MacroC_Num+1
+                        colors = np.array(sns.color_palette(None, self.MacroC_Num+1))
+                        self.MacroClusters=np.vstack((self.MacroClusters,np.array([self.MacroC_Num,len(np.unique(edge_list)),edge_list,colors[-1,:]])))
+                        print("--Macro Cluster #",self.MacroC_Num," is defined--")
+                        self.MCs[a,2]=self.MacroC_Num
                 
     def SearchforClusters(self):
         for i in range(self.MCs.shape[0]):
