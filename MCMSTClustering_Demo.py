@@ -125,7 +125,7 @@ class MCMSTCluster:
                 if(self.MCs[a,2]==0 and self.MCs[a,1]>=self.N*self.n_micro):
                         self.MacroC_Num=self.MacroC_Num+1
                         colors = np.array(sns.color_palette(None, self.MacroC_Num+1))
-                        self.MacroClusters=np.vstack((self.MacroClusters,np.array([self.MacroC_Num,len(np.unique(edge_list)),edge_list,colors[-1,:]])))
+                        self.MacroClusters=np.vstack((self.MacroClusters,np.array([self.MacroC_Num,len(np.unique(edge_list)),edge_list,colors[-1,:]],dtype=object)))
                         print("--Macro Cluster #",self.MacroC_Num," is defined--")
                         self.MCs[a,2]=self.MacroC_Num
                 
