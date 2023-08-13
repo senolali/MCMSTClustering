@@ -42,6 +42,7 @@ class MCMSTCluster:
         self.processed_data=np.empty((0,d+3),float) #[index | MC No | isActive | features={d1,d2,d3...}]
         self.MCs=np.empty((0,d+3),float) #[MC No | #of data it has | Macro Cluster # |centerCoordinates={d1,d2,d3,...}]
         self.MacroClusters=np.empty((0,4)) #[MacroClusterNo | #of data it has | isActive ]
+        self.labels_=[] #Cluster labels
     
     def AddNode(self,XX): # add the data to processed_data
         self.processed_data=np.hstack((np.arange(XX.shape[0]).reshape(XX.shape[0],1)+1,np.repeat([[0,0]], XX.shape[0],0),XX))
@@ -136,6 +137,7 @@ class MCMSTCluster:
     def assingMacoN(self):
         for i in self.MCs:
             self.processed_data[self.processed_data[:,1]==i[0],2]=i[2]
+        self.labels_=self.processed_data[:,2].reshape(-1)
     def RegulateClusters(self):
         X=self.processed_data[self.processed_data[:,1]==0,:]#data that do not belong to any cluster
         if(X.shape[0]>0 and self.MCs.shape[0]>0):
@@ -278,7 +280,7 @@ for dataset in data_sets:
     kds.assingMacoN()
     
     
-    labels=kds.processed_data[:,2].reshape(-1)
+    labels=kds.labels_
     if len(np.unique(labels))>1:
         ARI=adjusted_rand_score(labels_true.reshape(-1), labels)
         if ARI>maxARI:
