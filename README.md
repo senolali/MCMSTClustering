@@ -32,5 +32,5 @@ If you use the code in your works, please cite the paper given below:
 
 <b>Cite this article:</b>
 
-Şenol, A. MCMSTClustering: defining non-spherical clusters by using minimum spanning tree over KD-tree-based micro-clusters. Neural Comput & Applic (2023). https://doi.org/10.1007/s00521-023-08386-3
+Şenol, A. MCMSTClustering: defining non-spherical clusters by using minimum spanning tree over KD-tree-based micro-clusters. Neural Comput & Applic 35, 13239–13259 (2023). https://doi.org/10.1007/s00521-023-08386-3
 
