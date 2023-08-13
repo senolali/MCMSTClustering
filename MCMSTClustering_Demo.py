@@ -30,8 +30,9 @@ class MCMSTCluster:
     MC_Num=int
     MacroC_Num=int
     colors=np.empty((0,4),int)
-    def __init__(self,N,r,n_micro,d):
+    def __init__(self,X,N,r,n_micro,d):
         #algorithm parameters###########################################
+        self.XX=X
         self.N = N #minimum number of data to define a MC 
         self.r = r # radius of MC
         self.n_micro=n_micro # minimum number MC to define Macro Cluster
@@ -42,10 +43,14 @@ class MCMSTCluster:
         self.processed_data=np.empty((0,d+3),float) #[index | MC No | isActive | features={d1,d2,d3...}]
         self.MCs=np.empty((0,d+3),float) #[MC No | #of data it has | Macro Cluster # |centerCoordinates={d1,d2,d3,...}]
         self.MacroClusters=np.empty((0,4)) #[MacroClusterNo | #of data it has | isActive ]
-        self.labels_=[] #Cluster labels
-    
-    def AddNode(self,XX): # add the data to processed_data
-        self.processed_data=np.hstack((np.arange(XX.shape[0]).reshape(XX.shape[0],1)+1,np.repeat([[0,0]], XX.shape[0],0),XX))
+        self.labels_=[] #Cluster labels_
+        self.AddNode()
+        self.DefineMC()
+        self.RegulateClusters()
+        self.DefMacros()
+        self.assingMacoN()
+    def AddNode(self): # add the data to processed_data
+        self.processed_data=np.hstack((np.arange(self.XX.shape[0]).reshape(self.XX.shape[0],1)+1,np.repeat([[0,0]], self.XX.shape[0],0),self.XX))
             
     def DefineMC(self):       
         while True:
@@ -272,15 +277,9 @@ for dataset in data_sets:
     maxEpsilon=float('-inf') 
     SI=float('-inf') 
    
-    kds=MCMSTCluster(N,r,n_micro,X.shape[1])
-    kds.AddNode(X)
-    kds.DefineMC()
-    kds.RegulateClusters()
-    kds.DefMacros()
-    kds.assingMacoN()
-    
-    
+    kds=MCMSTCluster(X,N,r,n_micro,X.shape[1])    
     labels=kds.labels_
+    
     if len(np.unique(labels))>1:
         ARI=adjusted_rand_score(labels_true.reshape(-1), labels)
         if ARI>maxARI:
