@@ -277,15 +277,15 @@ for dataset in data_sets:
     maxEpsilon=float('-inf') 
     SI=float('-inf') 
    
-    kds=MCMSTCluster(X,N,r,n_micro,X.shape[1])    
-    labels=kds.labels_
+    mcmst=MCMSTCluster(X,N,r,n_micro,X.shape[1])    
+    labels=mcmst.labels_
     
     if len(np.unique(labels))>1:
         ARI=adjusted_rand_score(labels_true.reshape(-1), labels)
         if ARI>maxARI:
             maxARI=ARI
             maxSI=silhouette_score(X,labels)
-            maxPurity=kds.purity_score(labels_true.reshape(-1), labels)
+            maxPurity=mcmst.purity_score(labels_true.reshape(-1), labels)
             optN=N
             optR=r
             optNMicro=n_micro
@@ -296,5 +296,5 @@ for dataset in data_sets:
             print("The best N=%d"%N)
             print("The best r=%0.4f"%r)
             print("the best n_micro=%d"%n_micro)
-            kds.plotMCs(N,r,n_micro,maxARI,maxPurity,maxSI)
-            kds.plotGraph(X,labels,r,N,n_micro,"ARI",ARI,dataset_name)
+            mcmst.plotMCs(N,r,n_micro,maxARI,maxPurity,maxSI)
+            mcmst.plotGraph(X,labels,r,N,n_micro,"ARI",ARI,dataset_name)
