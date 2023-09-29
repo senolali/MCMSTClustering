@@ -119,7 +119,7 @@ class MCMSTCluster:
                     edges=np.unique(edge_list)
                     for e in edges:
                         summ=summ+self.MCs[self.MCs[:,0]==e,1]
-                    if(summ>=n_micro*N or len(np.unique(edge_list))>=n_micro):
+                    if(summ>=self.n_micro*self.N or len(np.unique(edge_list))>=self.n_micro):
                         self.MacroC_Num=self.MacroC_Num+1
                         colors = np.array(sns.color_palette(None, self.MacroC_Num+1))
                         self.MacroClusters=np.vstack((self.MacroClusters,  np.array([self.MacroC_Num,len(np.unique(edge_list)),edge_list,colors[-1,:]],dtype=object)   ))
@@ -167,7 +167,7 @@ class MCMSTCluster:
         plt_name=str("img/"+dataset_name+"_"+index+".png")
         plt.savefig(plt_name,bbox_inches='tight') 
         plt.show()        
-    def plotMCs(self,N,r,n_micro,maxARI,maxPurity,maxSI,dpi=100):
+    def plotMCs(self,N,r,n_micro,maxARI,maxPurity,maxSI,dataset_name,dpi=100):
         ax = plt.gca()
         plt.rcParams['figure.dpi'] = dpi
         plt.rcParams["figure.figsize"] = (4,4) 
@@ -207,7 +207,7 @@ class MCMSTCluster:
         # plt.show()
         plt.subplots_adjust(bottom=0.25) 
         text = plt.text(0.45, -0.25, 
-                        str("{N=%d,r=%.2f,NM=%d}=>{ARI=%.4f,Pur=%.4f,SI=%.4f}"%(optN,optR,optNMicro,maxARI,maxPurity,maxSI)), 
+                        str("{N=%d,r=%.2f,NM=%d}=>{ARI=%.4f,Pur=%.4f,SI=%.4f}"%(N,r,n_micro,maxARI,maxPurity,maxSI)), 
         horizontalalignment='center', wrap=True ) 
         plt.tight_layout(rect=(0,.05,1,1)) 
         text.set_bbox(dict(facecolor='red', alpha=0.5, edgecolor='black'))
