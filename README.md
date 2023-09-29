@@ -30,7 +30,7 @@ The main contributions of our algorithm can be summed up as follows:
 
 Requirements:
 
-• Python
+• Python (2.9 or upper)
 
 • NumPy
 
