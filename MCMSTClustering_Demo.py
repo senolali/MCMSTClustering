@@ -296,5 +296,5 @@ for dataset in data_sets:
             print("The best N=%d"%N)
             print("The best r=%0.4f"%r)
             print("the best n_micro=%d"%n_micro)
-            mcmst.plotMCs(N,r,n_micro,maxARI,maxPurity,maxSI)
+            mcmst.plotMCs(N,r,n_micro,maxARI,maxPurity,maxSI,dataset_name)
             mcmst.plotGraph(X,labels,r,N,n_micro,"ARI",ARI,dataset_name)
