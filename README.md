@@ -29,6 +29,7 @@ The main contributions of our algorithm can be summed up as follows:
 ![Macro-Clusters](img/4_Moon__ARI.png)
 
 Requirements:
+
 • Python
 
 • NumPy
