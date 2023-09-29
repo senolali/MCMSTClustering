@@ -30,18 +30,18 @@ class MCMSTCluster:
     MC_Num=int
     MacroC_Num=int
     colors=np.empty((0,4),int)
-    def __init__(self,X,N,r,n_micro,d):
+    def __init__(self,X,N,r,n_micro):
         #algorithm parameters###########################################
         self.XX=X
         self.N = N #minimum number of data to define a MC 
         self.r = r # radius of MC
         self.n_micro=n_micro # minimum number MC to define Macro Cluster
         ##################################################################
-        self.d=d
+        self.d=X.shape[1]
         self.MC_Num=0
         self.MacroC_Num=0
-        self.processed_data=np.empty((0,d+3),float) #[index | MC No | isActive | features={d1,d2,d3...}]
-        self.MCs=np.empty((0,d+3),float) #[MC No | #of data it has | Macro Cluster # |centerCoordinates={d1,d2,d3,...}]
+        self.processed_data=np.empty((0,self.d+3),float) #[index | MC No | isActive | features={d1,d2,d3...}]
+        self.MCs=np.empty((0,self.d+3),float) #[MC No | #of data it has | Macro Cluster # |centerCoordinates={d1,d2,d3,...}]
         self.MacroClusters=np.empty((0,4)) #[MacroClusterNo | #of data it has | isActive ]
         self.labels_=[] #Cluster labels_
         self.AddNode()
@@ -277,7 +277,7 @@ for dataset in data_sets:
     maxEpsilon=float('-inf') 
     SI=float('-inf') 
    
-    mcmst=MCMSTCluster(X,N,r,n_micro,X.shape[1])    
+    mcmst=MCMSTCluster(X,N,r,n_micro)    
     labels=mcmst.labels_
     
     if len(np.unique(labels))>1:
