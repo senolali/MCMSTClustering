@@ -28,16 +28,25 @@ The main contributions of our algorithm can be summed up as follows:
 ![Micro-Clusters](img/4_Moon_.png) 
 ![Macro-Clusters](img/4_Moon__ARI.png)
 
-Required packages:
+Requirements:
 • Python
+
 • NumPy
+
 • scikit-learn (for KDTree, MinMaxScaler, and some metrics)
+
 • SciPy (optional, for loading .mat files)
+
 • Seaborn (for plotting)
+
 • Matplotlib (for creating plots)
+
 • IPython (for some IPython-specific magic commands)
+
 • Datasets (Place your datasets in a directory named "Datasets")
+
 • Directory Structure (Create an "img" directory in the same location as your code)
+
 • Jupyter Notebook (optional, if you plan to run the code in a Jupyter Notebook)
 
 If you use the code in your works, please cite the paper given below:
