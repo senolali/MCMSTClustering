@@ -21,6 +21,7 @@ warnings.filterwarnings("ignore")
 get_ipython().magic('reset -sf')
 get_ipython().magic('clear all -sf')
 
+
 class MCMSTClustering(BaseEstimator, ClusterMixin):
     def __init__(self, N=5, r=0.05, n_micro=5):
         """
@@ -72,6 +73,32 @@ class MCMSTClustering(BaseEstimator, ClusterMixin):
         """
         self.fit(X)
         return self._labels_
+    
+    def predict(self, X):
+        """
+        Assign cluster labels to new data points.
+    
+        Parameters:
+        - X: New data points as a NumPy array.
+    
+        Returns:
+        - labels: Cluster labels for each new data point.
+    
+        This method assigns cluster labels to new data points based on the pre-trained clustering model.
+        """
+        if not hasattr(self, '_MCs'):
+            raise ValueError("The model has not been trained. Please call the 'fit' method first.")
+        
+        tree = KDTree(self._MCs[:, 3:])
+        labels = np.zeros(X.shape[0], dtype=int)
+    
+        for i in range(X.shape[0]):
+            distance, index = tree.query([X[i]])
+            if distance[0] <= self._r:
+                labels[i] = int(self._MCs[int(index[0])][0])
+        
+        return labels
+
 
     def _AddNode(self):
         """
