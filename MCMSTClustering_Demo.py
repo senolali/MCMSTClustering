@@ -7,25 +7,19 @@ Created on Mon Jan 23 10:41:16 2023
 
 import numpy as np
 import seaborn as sns
+import scipy
 from scipy.spatial.distance import pdist, squareform
-import matplotlib.pyplot as plt
 from sklearn.neighbors import KDTree
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics.cluster import adjusted_rand_score
 from sklearn.metrics.cluster import silhouette_score
-import scipy
+from sklearn.base import BaseEstimator, ClusterMixin
 from IPython import get_ipython
 import warnings
 from sklearn import metrics
 warnings.filterwarnings("ignore")
 get_ipython().magic('reset -sf')
 get_ipython().magic('clear all -sf')
-xt=np.array([])
-import numpy as np
-from sklearn.base import BaseEstimator, ClusterMixin
-
-from IPython import get_ipython
-import warnings
 
 class MCMSTClustering(BaseEstimator, ClusterMixin):
     def __init__(self, N=5, r=0.05, n_micro=5):
