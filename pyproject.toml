@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcmst_clust"
+version = "1.0.7"
+description = "Multi-Center Minimum Spanning Tree Clustering algorithm"
+authors = [
+    { name = "Ali Şenol", email = "alisenol@tarsus.edu.tr" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+
+dependencies = [
+    "numpy",
+    "scipy",
+    "networkx",
+]
+
+[project.urls]
+Homepage = "https://github.com/senolali/MCMSTClustering"
+Documentation = "https://github.com/senolali/MCMSTClustering"
+
+
+
+
