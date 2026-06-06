@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcmst-clust"
+dynamic = ["version"]
+description = "MCMSTClustering: Non-spherical cluster detection via Minimum Spanning Tree over KD-Tree-based micro-clusters"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Ali Şenol", email = "alisenol@tarsus.edu.tr" }
+]
+keywords = [
+    "clustering",
+    "minimum spanning tree",
+    "kd-tree",
+    "micro-cluster",
+    "arbitrary-shaped clusters",
+    "density-based clustering",
+    "machine learning",
+    "unsupervised learning",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.23",
+    "scipy>=1.9",
+    "scikit-learn>=1.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "isort>=5.12",
+    "flake8>=6.0",
+    "mypy>=1.0",
+]
+examples = [
+    "matplotlib>=3.5",
+    "pandas>=1.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/senolali/MCMSTClustering"
+Repository = "https://github.com/senolali/MCMSTClustering"
+"Bug Tracker" = "https://github.com/senolali/MCMSTClustering/issues"
+Documentation = "https://github.com/senolali/MCMSTClustering#readme"
+Paper = "https://doi.org/10.1007/s00521-023-08386-3"
+
+[tool.setuptools.dynamic]
+version = { attr = "mcmstclustering.version.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mcmstclustering*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--tb=short -v"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
