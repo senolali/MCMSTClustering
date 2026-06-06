@@ -44,6 +44,7 @@ pip install -e .
 
 ```python
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 from mcmstclustering import MCMSTClustering
 
@@ -64,6 +65,34 @@ labels = model.fit_predict(X)
 print(f"Clusters found : {model.n_clusters_}")
 print(f"Micro-clusters : {len(model.micro_clusters_)}")
 print(f"Noise points   : {(labels == -1).sum()}")
+
+# Plot results
+fig, axes = plt.subplots(1, 2, figsize=(11, 4))
+
+# Left: raw data
+axes[0].scatter(X[:, 0], X[:, 1], c="steelblue", s=20, alpha=0.6)
+axes[0].set_title("Raw Data")
+axes[0].set_xlabel("Feature 1")
+axes[0].set_ylabel("Feature 2")
+
+# Right: clustering result
+noise = labels == -1
+axes[1].scatter(X[~noise, 0], X[~noise, 1], c=labels[~noise],
+                cmap="tab10", s=20, alpha=0.8, label="Cluster points")
+if noise.any():
+    axes[1].scatter(X[noise, 0], X[noise, 1], c="lightgray",
+                    s=20, marker="x", label="Noise")
+axes[1].scatter(model.micro_cluster_centers_[:, 0],
+                model.micro_cluster_centers_[:, 1],
+                c="red", s=60, marker="+", linewidths=1.5,
+                label="Micro-cluster centers")
+axes[1].set_title(f"MCMSTClustering — {model.n_clusters_} clusters found")
+axes[1].set_xlabel("Feature 1")
+axes[1].set_ylabel("Feature 2")
+axes[1].legend(fontsize=8)
+
+plt.tight_layout()
+plt.show()
 ```
 
 ---
